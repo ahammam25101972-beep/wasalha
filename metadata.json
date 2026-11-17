@@ -1,0 +1,6 @@
+{
+  "name": "كابتن القاهرة للشحن والتوصيل الفوري",
+  "description": "نظام تشغيل وإدارة طلبات الشحن والتوصيل الفوري وحسابات التجار لكباتن التوصيل في القاهرة.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

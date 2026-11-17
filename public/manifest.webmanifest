@@ -1,0 +1,40 @@
+{
+  "id": "/",
+  "name": "وصلها لي - أسهل توصيل",
+  "short_name": "وصلها لي",
+  "description": "نظام تشغيل وإدارة طلبات الشحن والتوصيل الفوري وحسابات التجار لكباتن التوصيل في جميع المحافظات.",
+  "theme_color": "#0F172A",
+  "background_color": "#0F172A",
+  "display": "standalone",
+  "orientation": "portrait",
+  "dir": "rtl",
+  "lang": "ar",
+  "start_url": "/",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/assets/aistudio/Gemini_Generated_Image_4yf644yf644yf644_e31b0944.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
