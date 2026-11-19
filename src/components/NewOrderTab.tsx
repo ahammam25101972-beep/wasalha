@@ -310,25 +310,25 @@ export const NewOrderTab: React.FC<NewOrderTabProps> = ({
     <div className="space-y-6">
       {/* Created Waybill Summary Banner / Modal Card */}
       {createdWaybill && (
-        <div className="rounded-2xl bg-slate-900 text-white p-5 sm:p-6 shadow-lg border border-slate-800 space-y-5">
+        <div className="rounded-2xl bg-slate-900 text-white p-4 sm:p-6 shadow-lg border border-slate-800 space-y-4 sm:space-y-5">
           <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800">
-            <div className="flex items-center gap-3.5">
+            <div className="flex items-center gap-3">
               <img
                 src={APP_LOGO_URL}
                 alt="شعار وصلها لي - أسهل توصيل"
-                className="w-14 h-14 rounded-full object-cover border-2 border-[#F97316] bg-white shadow-md shrink-0"
+                className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-[#F97316] bg-white shadow-md shrink-0"
               />
-              <div>
-                <div className="text-xs text-emerald-400 font-semibold">
-                  وصلها لي (أسهل توصيل) · تم تسجيل طلب الشحن وإصدار البوليصة بنجاح
+              <div className="min-w-0">
+                <div className="text-[11px] sm:text-xs text-emerald-400 font-semibold">
+                  وصلها لي (أسهل توصيل) · تم إصدار البوليصة بنجاح
                 </div>
-                <h2 className="text-xl font-bold tracking-tight flex items-center gap-2">
+                <h2 className="text-lg sm:text-xl font-bold tracking-tight flex items-center gap-2">
                   <span>بوليصة رقم</span>
                   <span className="font-mono-num text-[#F97316]" dir="ltr">
                     {createdWaybill.id}
                   </span>
                 </h2>
-                <div className="text-[11px] text-slate-400 font-mono-num" dir="ltr">
+                <div className="text-[11px] text-slate-400 font-mono-num truncate" dir="ltr">
                   {APP_BRAND_PHONE} · {APP_BRAND_WEBSITE}
                 </div>
               </div>
@@ -336,15 +336,15 @@ export const NewOrderTab: React.FC<NewOrderTabProps> = ({
             <button
               type="button"
               onClick={() => onTrackWaybill(createdWaybill.id)}
-              className="min-h-[40px] px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition-colors cursor-pointer whitespace-nowrap shrink-0"
+              className="w-full sm:w-auto min-h-[40px] px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition-colors cursor-pointer whitespace-nowrap shrink-0"
             >
               تتبع حالة الشحنة
             </button>
           </div>
 
           {/* Summary Details Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-            <div className="rounded-xl bg-slate-800/70 p-4 space-y-1.5 border border-slate-700/60">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4 text-sm">
+            <div className="rounded-xl bg-slate-800/70 p-3.5 sm:p-4 space-y-1.5 border border-slate-700/60">
               <div className="text-xs text-slate-400">
                 بيانات المُرسل (
                 {createdWaybill.senderType === 'individual'
@@ -355,7 +355,7 @@ export const NewOrderTab: React.FC<NewOrderTabProps> = ({
               <div className="font-bold text-white">
                 {createdWaybill.senderName}
               </div>
-              <div className="text-xs text-slate-300 flex items-center gap-2">
+              <div className="text-xs text-slate-300 flex flex-wrap items-center gap-2">
                 <span className="font-mono-num" dir="ltr">
                   {createdWaybill.senderPhone}
                 </span>
@@ -377,12 +377,12 @@ export const NewOrderTab: React.FC<NewOrderTabProps> = ({
               )}
             </div>
 
-            <div className="rounded-xl bg-slate-800/70 p-4 space-y-1.5 border border-slate-700/60">
+            <div className="rounded-xl bg-slate-800/70 p-3.5 sm:p-4 space-y-1.5 border border-slate-700/60">
               <div className="text-xs text-slate-400">بيانات المستلم</div>
               <div className="font-bold text-white">
                 {createdWaybill.recipientName}
               </div>
-              <div className="text-xs text-slate-300 flex items-center gap-2">
+              <div className="text-xs text-slate-300 flex flex-wrap items-center gap-2">
                 <span className="font-mono-num" dir="ltr">
                   {createdWaybill.recipientPhone}
                 </span>
@@ -407,32 +407,32 @@ export const NewOrderTab: React.FC<NewOrderTabProps> = ({
           {(() => {
             const fin = computeShipmentFinancials(createdWaybill);
             return (
-              <div className="grid grid-cols-3 gap-3 rounded-xl bg-slate-950/70 p-4 border border-slate-800 text-center">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3 rounded-xl bg-slate-950/70 p-3 sm:p-4 border border-slate-800 text-center">
                 <div>
-                  <div className="text-[11px] text-slate-400">
-                    قيمة التحصيل (COD)
+                  <div className="text-[10px] sm:text-[11px] text-slate-400">
+                    قيمة التحصيل
                   </div>
-                  <div className="text-base sm:text-lg font-bold font-mono-num text-white mt-0.5">
+                  <div className="text-sm sm:text-lg font-bold font-mono-num text-white mt-0.5">
                     {fin.codAmount.toLocaleString('en-US')} ج.م
                   </div>
                 </div>
-                <div className="border-x border-slate-800 px-2">
-                  <div className="text-[11px] text-slate-400">
+                <div className="border-x border-slate-800 px-1.5 sm:px-2">
+                  <div className="text-[10px] sm:text-[11px] text-slate-400">
                     الشحن (
                     {createdWaybill.shippingBearer === 'recipient'
-                      ? 'على المستلم'
-                      : 'على المُرسل'}
+                      ? 'المستلم'
+                      : 'المُرسل'}
                     )
                   </div>
-                  <div className="text-base sm:text-lg font-bold font-mono-num text-[#F97316] mt-0.5">
+                  <div className="text-sm sm:text-lg font-bold font-mono-num text-[#F97316] mt-0.5">
                     {fin.shippingFee.toLocaleString('en-US')} ج.م
                   </div>
                 </div>
                 <div>
-                  <div className="text-[11px] text-emerald-400 font-semibold">
-                    المطلوب من المستلم
+                  <div className="text-[10px] sm:text-[11px] text-emerald-400 font-semibold">
+                    المطلوب تحصيله
                   </div>
-                  <div className="text-base sm:text-lg font-bold font-mono-num text-emerald-400 mt-0.5">
+                  <div className="text-sm sm:text-lg font-bold font-mono-num text-emerald-400 mt-0.5">
                     {fin.totalToCollectFromCustomer.toLocaleString('en-US')} ج.م
                   </div>
                 </div>
@@ -441,11 +441,11 @@ export const NewOrderTab: React.FC<NewOrderTabProps> = ({
           })()}
 
           {/* Primary Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-1">
             <button
               type="button"
               onClick={() => handleCopyAndWhatsApp(createdWaybill, 'captain')}
-              className="flex-1 min-h-[48px] px-4 py-3 rounded-xl bg-[#10B981] hover:bg-[#059669] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md transition-colors cursor-pointer"
+              className="flex-1 min-h-[48px] px-3.5 sm:px-4 py-3 rounded-xl bg-[#10B981] hover:bg-[#059669] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md transition-colors cursor-pointer"
             >
               <MessageCircle className="w-5 h-5 shrink-0" />
               <span>
@@ -456,7 +456,7 @@ export const NewOrderTab: React.FC<NewOrderTabProps> = ({
             <button
               type="button"
               onClick={() => handleCopyAndWhatsApp(createdWaybill, 'none')}
-              className="min-h-[48px] px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer"
+              className="min-h-[48px] px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer"
             >
               {copiedWaybill ? (
                 <>
@@ -475,7 +475,7 @@ export const NewOrderTab: React.FC<NewOrderTabProps> = ({
               <button
                 type="button"
                 onClick={onNavigateToCaptain}
-                className="min-h-[48px] px-4 py-3 rounded-xl bg-[#F97316] hover:bg-[#EA580C] text-white font-bold text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                className="min-h-[48px] px-4 py-3 rounded-xl bg-[#F97316] hover:bg-[#EA580C] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer"
               >
                 <Truck className="w-4 h-4 shrink-0" />
                 <span>الذهاب للوحة الكابتن</span>
@@ -485,7 +485,7 @@ export const NewOrderTab: React.FC<NewOrderTabProps> = ({
             <button
               type="button"
               onClick={handleStartNewForm}
-              className="min-h-[48px] px-4 py-3 rounded-xl border border-slate-700 hover:bg-slate-800 text-slate-300 text-sm font-semibold transition-colors cursor-pointer"
+              className="min-h-[48px] px-4 py-3 rounded-xl border border-slate-700 hover:bg-slate-800 text-slate-300 text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
             >
               تسجيل طلب شحن آخر
             </button>
@@ -494,13 +494,13 @@ export const NewOrderTab: React.FC<NewOrderTabProps> = ({
       )}
 
       {/* Main Registration Form */}
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-start">
           {/* Right Column (7 cols on desktop): Sender & Recipient Info */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-4 sm:space-y-6">
             {/* Section 1: Sender (Neighborhood Individual OR Merchant across All Governorates) */}
-            <section className="rounded-2xl bg-white p-5 sm:p-6 border border-slate-200/90 shadow-xs space-y-4">
-              <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100">
+            <section className="rounded-2xl bg-white p-3.5 sm:p-6 border border-slate-200/90 shadow-xs space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
                 <div className="flex items-center gap-2.5">
                   <div className="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center shrink-0">
                     {senderType === 'individual' ? (
@@ -510,21 +510,21 @@ export const NewOrderTab: React.FC<NewOrderTabProps> = ({
                     )}
                   </div>
                   <div>
-                    <h2 className="text-base font-bold text-slate-900">
+                    <h2 className="text-sm sm:text-base font-bold text-slate-900">
                       1. بيانات المُرسل (أفراد أو تجار - كافة المحافظات)
                     </h2>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-[11px] sm:text-xs text-slate-500">
                       أدخل بياناتك وعنوان استلام الطرد والعلامة المميزة ليصلك الكابتن بسهولة
                     </p>
                   </div>
                 </div>
 
                 {/* Sender Type Segmented Selector */}
-                <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
+                <div className="grid grid-cols-2 sm:flex items-center gap-1 bg-slate-100 p-1 rounded-xl w-full sm:w-auto">
                   <button
                     type="button"
                     onClick={() => setSenderType('individual')}
-                    className={`min-h-[36px] px-3 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
+                    className={`min-h-[38px] px-3 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
                       senderType === 'individual'
                         ? 'bg-slate-900 text-white shadow-xs'
                         : 'text-slate-600 hover:text-slate-900'
@@ -535,7 +535,7 @@ export const NewOrderTab: React.FC<NewOrderTabProps> = ({
                   <button
                     type="button"
                     onClick={() => setSenderType('merchant')}
-                    className={`min-h-[36px] px-3 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
+                    className={`min-h-[38px] px-3 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
                       senderType === 'merchant'
                         ? 'bg-slate-900 text-white shadow-xs'
                         : 'text-slate-600 hover:text-slate-900'

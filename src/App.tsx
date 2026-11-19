@@ -729,16 +729,21 @@ export default function App() {
     }
   };
 
+  useEffect(() => {
+    document.title =
+      'وصلها لي — أسهل توصيل | شحن وتوصيل فوري لكافة المحافظات';
+  }, []);
+
   return (
     <div
-      className={`min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A] ${
+      className={`min-h-screen w-full max-w-[100vw] overflow-x-hidden flex flex-col bg-[#F8FAFC] text-[#0F172A] ${
         isAdminAuthenticated ? 'pb-32' : 'pb-20'
       }`}
     >
       <OfflineIndicator />
 
       {/* Strict 3-Zone Top Bar Contract */}
-      <header className="sticky top-0 z-30 h-16 bg-[#0F172A] text-white border-b border-slate-800 px-4 sm:px-6 flex items-center justify-between gap-6">
+      <header className="sticky top-0 z-30 h-14 sm:h-16 bg-[#0F172A] text-white border-b border-slate-800 px-3 sm:px-6 flex items-center justify-between gap-2 sm:gap-6">
         {/* Zone 1: Brand Logo + Wordmark */}
         <a
           href="#top"
@@ -746,14 +751,17 @@ export default function App() {
             e.preventDefault();
             setActiveTab(isAdminAuthenticated ? 'captain' : 'new_order');
           }}
-          className="flex items-center gap-2.5 text-base sm:text-lg font-bold tracking-tight text-white whitespace-nowrap shrink-0"
+          className="flex items-center gap-2 sm:gap-2.5 text-sm sm:text-lg font-bold tracking-tight text-white whitespace-nowrap shrink-0 min-w-0"
         >
           <img
             src={APP_LOGO_URL}
             alt="شعار وصلها لي - أسهل توصيل"
-            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-[#F97316] bg-white shadow-sm shrink-0"
+            className="w-9 h-9 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-[#F97316] bg-white shadow-sm shrink-0"
           />
-          <span>وصلها لي · أسهل توصيل</span>
+          <span className="truncate">
+            وصلها لي
+            <span className="hidden xs:inline sm:inline"> · أسهل توصيل</span>
+          </span>
         </a>
 
         {/* Zone 2: Concise single-line text navigation links */}
@@ -830,21 +838,24 @@ export default function App() {
             <button
               type="button"
               onClick={() => setIsNotificationsOpen(true)}
-              className="min-h-[40px] px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white flex items-center gap-1.5 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+              className="min-h-[38px] sm:min-h-[40px] px-2.5 sm:px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-[11px] sm:text-xs font-bold text-white flex items-center gap-1.5 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
             >
-              <Bell className="w-4 h-4 text-[#F97316] shrink-0" />
+              <Bell className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#F97316] shrink-0" />
               <span>
-                إشعارات الكابتن {unreadCount > 0 ? `(${unreadCount})` : ''}
+                الإشعارات {unreadCount > 0 ? `(${unreadCount})` : ''}
               </span>
             </button>
           ) : (
             <button
               type="button"
               onClick={() => setAdminAuthModalMode('login')}
-              className="min-h-[40px] px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-white flex items-center gap-1.5 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+              className="min-h-[38px] sm:min-h-[40px] px-2.5 sm:px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[11px] sm:text-xs font-bold text-white flex items-center gap-1.5 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
             >
               <LockIcon className="w-3.5 h-3.5 text-[#F97316] shrink-0" />
-              <span>دخول الإدارة / الكابتن</span>
+              <span>
+                دخول الإدارة
+                <span className="hidden sm:inline"> / الكابتن</span>
+              </span>
             </button>
           )}
         </div>
@@ -852,8 +863,8 @@ export default function App() {
 
       {/* Real-time Incoming Push Notification Banner (Admin Only) */}
       {isAdminAuthenticated && livePushBanner && (
-        <div className="w-full max-w-2xl mx-auto px-4 pt-3 z-40">
-          <div className="rounded-2xl bg-slate-900 text-white p-4 shadow-xl border border-slate-700 flex items-start justify-between gap-3">
+        <div className="w-full max-w-2xl mx-auto px-3 sm:px-4 pt-3 z-40">
+          <div className="rounded-2xl bg-slate-900 text-white p-3.5 sm:p-4 shadow-xl border border-slate-700 flex items-start justify-between gap-3">
             <div
               onClick={() => {
                 markOneAsRead(livePushBanner.id);
@@ -892,33 +903,33 @@ export default function App() {
       )}
 
       {/* Main Content Container */}
-      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 py-5 space-y-5">
+      <main className="flex-1 w-full max-w-7xl mx-auto px-3 sm:px-6 py-3.5 sm:py-5 space-y-4 sm:space-y-5">
         {/* Brand Identity & Workspace Banner (Adapts between Customer Portal and Admin Control Panel) */}
-        <div className="rounded-2xl bg-white p-4 sm:px-5 border border-slate-200/90 shadow-xs flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-          <div className="flex items-center gap-3.5">
+        <div className="rounded-2xl bg-white p-3.5 sm:p-5 border border-slate-200/90 shadow-xs flex flex-col lg:flex-row lg:items-center justify-between gap-3.5 sm:gap-4">
+          <div className="flex items-start sm:items-center gap-3">
             <img
               src={APP_LOGO_URL}
               alt="شعار وصلها لي - أسهل توصيل"
-              className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-[#F97316] shadow-md bg-white shrink-0"
+              className="w-14 h-14 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-[#F97316] shadow-md bg-white shrink-0"
             />
-            <div className="space-y-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <h1 className="text-lg sm:text-xl font-bold text-slate-900">
+            <div className="space-y-1 min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                <h1 className="text-base sm:text-xl font-bold text-slate-900">
                   وصلها لي — أسهل توصيل
                 </h1>
-                <span className="text-xs font-bold text-[#EA580C]">
+                <span className="text-[11px] sm:text-xs font-bold text-[#EA580C]">
                   {isAdminAuthenticated
                     ? '· لوحة تحكم الإدارة والكابتن'
                     : '· شحن وتوصيل فوري لكافة المحافظات'}
                 </span>
               </div>
-              <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-600">
                 <a
                   href={`tel:${APP_BRAND_PHONE}`}
                   className="inline-flex items-center gap-1 font-bold font-mono-num text-slate-800 hover:text-[#F97316] transition-colors"
                   dir="ltr"
                 >
-                  <Phone className="w-3.5 h-3.5 text-[#F97316]" />
+                  <Phone className="w-3.5 h-3.5 text-[#F97316] shrink-0" />
                   <span>{APP_BRAND_PHONE}</span>
                 </a>
                 <span className="text-slate-300" aria-hidden="true">
@@ -928,15 +939,15 @@ export default function App() {
                   href={`https://${APP_BRAND_WEBSITE}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-semibold text-blue-700 hover:underline"
+                  className="inline-flex items-center gap-1 font-semibold text-blue-700 hover:underline truncate max-w-[210px] sm:max-w-none"
                   dir="ltr"
                 >
-                  <Globe className="w-3.5 h-3.5 text-[#F97316]" />
-                  <span>{APP_BRAND_WEBSITE}</span>
+                  <Globe className="w-3.5 h-3.5 text-[#F97316] shrink-0" />
+                  <span className="truncate">{APP_BRAND_WEBSITE}</span>
                 </a>
               </div>
-              <p className="text-[11px] sm:text-xs text-slate-500 flex items-center gap-1.5 pt-0.5">
-                <Sparkles className="w-3.5 h-3.5 text-[#F97316] shrink-0" />
+              <p className="text-[11px] sm:text-xs text-slate-500 flex items-start sm:items-center gap-1.5 pt-0.5 leading-relaxed">
+                <Sparkles className="w-3.5 h-3.5 text-[#F97316] shrink-0 mt-0.5 sm:mt-0" />
                 <span>
                   {isAdminAuthenticated
                     ? hasSampleData
@@ -949,21 +960,21 @@ export default function App() {
           </div>
 
           {isAdminAuthenticated ? (
-            /* Admin Control Panel Quick Actions */
-            <div className="flex flex-wrap items-center gap-2">
+            /* Admin Control Panel Quick Actions (2-col grid on mobile, flex row on sm+) */
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 w-full lg:w-auto">
               <button
                 type="button"
                 onClick={() => setIsAreaRatesOpen(true)}
-                className="min-h-[38px] px-3 py-1.5 rounded-xl bg-orange-50 hover:bg-orange-100 text-[#EA580C] border border-orange-200 text-xs font-bold flex items-center gap-1.5 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                className="min-h-[40px] px-2.5 sm:px-3 py-1.5 rounded-xl bg-orange-50 hover:bg-orange-100 text-[#EA580C] border border-orange-200 text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
               >
                 <Coins className="w-3.5 h-3.5 shrink-0" />
-                <span>أسعار الشحن لكل منطقة</span>
+                <span>أسعار الشحن للمناطق</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setAdminAuthModalMode('change_credentials')}
-                className="min-h-[38px] px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold flex items-center gap-1.5 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                className="min-h-[40px] px-2.5 sm:px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
               >
                 <KeyRound className="w-3.5 h-3.5 text-[#F97316] shrink-0" />
                 <span>يوزر وباسورد الإدارة</span>
@@ -973,7 +984,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={handleClearSampleDataAndStartLive}
-                  className="min-h-[38px] px-3 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-bold flex items-center gap-1.5 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                  className="min-h-[40px] px-2.5 sm:px-3 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
                 >
                   <Trash2 className="w-3.5 h-3.5 shrink-0" />
                   <span>مسح التجريبي</span>
@@ -983,7 +994,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setIsSettingsOpen(true)}
-                className="min-h-[38px] px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold flex items-center gap-1.5 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                className="min-h-[40px] px-2.5 sm:px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
               >
                 <Settings className="w-3.5 h-3.5 text-[#F97316] shrink-0" />
                 <span>النسخ الاحتياطي</span>
@@ -992,19 +1003,19 @@ export default function App() {
               <button
                 type="button"
                 onClick={handleAdminLogout}
-                className="min-h-[38px] px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold flex items-center gap-1.5 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                className="col-span-2 sm:col-span-1 min-h-[40px] px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
               >
                 <LogOut className="w-3.5 h-3.5 text-[#F97316] shrink-0" />
                 <span>خروج (وضع العميل)</span>
               </button>
             </div>
           ) : (
-            /* Customer Quick Action Buttons */
-            <div className="flex flex-wrap items-center gap-2">
+            /* Customer Quick Action Buttons (2 equal columns on mobile) */
+            <div className="grid grid-cols-2 sm:flex items-center gap-2 w-full lg:w-auto">
               <button
                 type="button"
                 onClick={() => setActiveTab('new_order')}
-                className={`min-h-[40px] px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer ${
+                className={`min-h-[42px] px-3 sm:px-4 py-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap ${
                   activeTab === 'new_order'
                     ? 'bg-[#F97316] text-white shadow-xs'
                     : 'bg-slate-100 text-slate-800 hover:bg-slate-200'
@@ -1017,14 +1028,14 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setActiveTab('tracking')}
-                className={`min-h-[40px] px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer ${
+                className={`min-h-[42px] px-3 sm:px-4 py-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap ${
                   activeTab === 'tracking'
                     ? 'bg-slate-900 text-white shadow-xs'
                     : 'bg-slate-100 text-slate-800 hover:bg-slate-200'
                 }`}
               >
                 <PackageSearch className="w-4 h-4 shrink-0" />
-                <span>تتبع شحنتك برقم البوليصة</span>
+                <span>تتبع شحنتك</span>
               </button>
             </div>
           )}
@@ -1110,7 +1121,7 @@ export default function App() {
 
       {/* Toast Feedback Banner */}
       {toastMessage && (
-        <div className="fixed bottom-32 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-lg border border-slate-700 text-xs sm:text-sm font-bold whitespace-nowrap">
+        <div className="fixed bottom-28 left-4 right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 z-50 bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-lg border border-slate-700 text-xs sm:text-sm font-bold text-center">
           {toastMessage}
         </div>
       )}
@@ -1120,17 +1131,17 @@ export default function App() {
         <div
           role="region"
           aria-label="شريط إجمالي مصاريف الشحن لليوم كله"
-          className="fixed bottom-16 left-0 right-0 z-30 bg-[#0F172A] text-white border-t border-slate-800 px-3 sm:px-6 py-2 shadow-lg"
+          className="fixed bottom-16 left-0 right-0 z-30 bg-[#0F172A] text-white border-t border-slate-800 px-3 sm:px-6 py-1.5 sm:py-2 shadow-lg"
         >
-          <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 text-xs overflow-x-auto no-scrollbar whitespace-nowrap">
             {/* Left/Right Metrics: Total Shipping Fees for Entire Day */}
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               <div className="flex items-center gap-1.5">
-                <TrendingUp className="w-4 h-4 text-[#F97316] shrink-0" />
-                <span className="text-slate-300 font-medium">
-                  إجمالي مصاريف الشحن لليوم كله:
+                <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#F97316] shrink-0" />
+                <span className="text-slate-300 font-medium text-[11px] sm:text-xs">
+                  شحن اليوم:
                 </span>
-                <strong className="text-sm sm:text-base font-bold font-mono-num text-[#F97316]">
+                <strong className="text-xs sm:text-base font-bold font-mono-num text-[#F97316]">
                   {dayShippingMetrics.totalDayShippingFees.toLocaleString(
                     'en-US'
                   )}{' '}
@@ -1138,13 +1149,13 @@ export default function App() {
                 </strong>
               </div>
 
-              <span className="hidden sm:inline text-slate-600" aria-hidden="true">
+              <span className="text-slate-600" aria-hidden="true">
                 |
               </span>
 
               <div className="flex items-center gap-2 text-[11px] sm:text-xs text-slate-300">
                 <span>
-                  مُحصّل (مسلم):{' '}
+                  مُحصّل:{' '}
                   <strong className="font-mono-num text-emerald-400">
                     {dayShippingMetrics.deliveredShippingFees.toLocaleString(
                       'en-US'
@@ -1154,7 +1165,7 @@ export default function App() {
                 </span>
                 <span aria-hidden="true">·</span>
                 <span>
-                  قيد التوصيل:{' '}
+                  جاري:{' '}
                   <strong className="font-mono-num text-amber-300">
                     {dayShippingMetrics.activeShippingFees.toLocaleString(
                       'en-US'
@@ -1162,11 +1173,9 @@ export default function App() {
                     ج.م
                   </strong>
                 </span>
-                <span className="hidden md:inline" aria-hidden="true">
-                  ·
-                </span>
-                <span className="hidden md:inline">
-                  صافي الربح بعد المصاريف:{' '}
+                <span aria-hidden="true">·</span>
+                <span>
+                  الصافي:{' '}
                   <strong className="font-mono-num text-white">
                     {dayShippingMetrics.netProfitAfterExpenses.toLocaleString(
                       'en-US'
@@ -1178,11 +1187,11 @@ export default function App() {
             </div>
 
             {/* Quick Action Buttons on the Bottom Bar */}
-            <div className="flex items-center gap-2 shrink-0">
+            <div className="hidden sm:flex items-center gap-2 shrink-0">
               <button
                 type="button"
                 onClick={() => setIsAreaRatesOpen(true)}
-                className="min-h-[32px] px-2.5 py-1 rounded-lg bg-[#F97316] hover:bg-[#EA580C] text-white text-[11px] font-bold flex items-center gap-1 transition-colors cursor-pointer whitespace-nowrap"
+                className="min-h-[30px] px-2.5 py-1 rounded-lg bg-[#F97316] hover:bg-[#EA580C] text-white text-[11px] font-bold flex items-center gap-1 transition-colors cursor-pointer whitespace-nowrap"
               >
                 <Coins className="w-3.5 h-3.5 shrink-0" />
                 <span>أسعار الشحن للمناطق</span>
@@ -1202,15 +1211,15 @@ export default function App() {
         <button
           type="button"
           onClick={() => setActiveTab('new_order')}
-          className={`min-h-[48px] flex flex-col items-center justify-center rounded-xl transition-colors cursor-pointer ${
+          className={`min-h-[48px] flex flex-col items-center justify-center rounded-xl transition-colors cursor-pointer min-w-0 px-0.5 ${
             activeTab === 'new_order'
               ? 'text-[#F97316] font-bold'
               : 'text-slate-500 hover:text-slate-900 font-medium'
           }`}
         >
           <PackagePlus className="w-5 h-5 shrink-0" />
-          <span className="text-[10px] sm:text-[11px] mt-1 whitespace-nowrap">
-            {isAdminAuthenticated ? 'تسجيل طلب' : 'اطلب توصيل شحنة'}
+          <span className="text-[10px] sm:text-[11px] mt-1 truncate max-w-full">
+            {isAdminAuthenticated ? 'طلب جديد' : 'اطلب توصيل شحنة'}
           </span>
         </button>
 
@@ -1219,14 +1228,14 @@ export default function App() {
             <button
               type="button"
               onClick={() => setActiveTab('captain')}
-              className={`min-h-[48px] flex flex-col items-center justify-center rounded-xl transition-colors cursor-pointer ${
+              className={`min-h-[48px] flex flex-col items-center justify-center rounded-xl transition-colors cursor-pointer min-w-0 px-0.5 ${
                 activeTab === 'captain'
                   ? 'text-[#F97316] font-bold'
                   : 'text-slate-500 hover:text-slate-900 font-medium'
               }`}
             >
               <Truck className="w-5 h-5 shrink-0" />
-              <span className="text-[10px] sm:text-[11px] mt-1 whitespace-nowrap">
+              <span className="text-[10px] sm:text-[11px] mt-1 truncate max-w-full">
                 الكابتن ({activeRunCount})
               </span>
             </button>
@@ -1234,15 +1243,15 @@ export default function App() {
             <button
               type="button"
               onClick={() => setActiveTab('clients')}
-              className={`min-h-[48px] flex flex-col items-center justify-center rounded-xl transition-colors cursor-pointer ${
+              className={`min-h-[48px] flex flex-col items-center justify-center rounded-xl transition-colors cursor-pointer min-w-0 px-0.5 ${
                 activeTab === 'clients'
                   ? 'text-[#F97316] font-bold'
                   : 'text-slate-500 hover:text-slate-900 font-medium'
               }`}
             >
               <Users className="w-5 h-5 shrink-0" />
-              <span className="text-[10px] sm:text-[11px] mt-1 whitespace-nowrap">
-                بحث العملاء
+              <span className="text-[10px] sm:text-[11px] mt-1 truncate max-w-full">
+                <span className="hidden sm:inline">بحث </span>العملاء
               </span>
             </button>
           </>
@@ -1251,15 +1260,15 @@ export default function App() {
         <button
           type="button"
           onClick={() => setActiveTab('tracking')}
-          className={`min-h-[48px] flex flex-col items-center justify-center rounded-xl transition-colors cursor-pointer ${
+          className={`min-h-[48px] flex flex-col items-center justify-center rounded-xl transition-colors cursor-pointer min-w-0 px-0.5 ${
             activeTab === 'tracking'
               ? 'text-[#F97316] font-bold'
               : 'text-slate-500 hover:text-slate-900 font-medium'
           }`}
         >
           <PackageSearch className="w-5 h-5 shrink-0" />
-          <span className="text-[10px] sm:text-[11px] mt-1 whitespace-nowrap">
-            تتبع الشحنة
+          <span className="text-[10px] sm:text-[11px] mt-1 truncate max-w-full">
+            تتبع<span className="hidden sm:inline"> الشحنة</span>
           </span>
         </button>
 
@@ -1267,15 +1276,15 @@ export default function App() {
           <button
             type="button"
             onClick={() => setActiveTab('accounting')}
-            className={`min-h-[48px] flex flex-col items-center justify-center rounded-xl transition-colors cursor-pointer ${
+            className={`min-h-[48px] flex flex-col items-center justify-center rounded-xl transition-colors cursor-pointer min-w-0 px-0.5 ${
               activeTab === 'accounting'
                 ? 'text-[#F97316] font-bold'
                 : 'text-slate-500 hover:text-slate-900 font-medium'
             }`}
           >
             <Calculator className="w-5 h-5 shrink-0" />
-            <span className="text-[10px] sm:text-[11px] mt-1 whitespace-nowrap">
-              الحسابات والميزانية
+            <span className="text-[10px] sm:text-[11px] mt-1 truncate max-w-full">
+              الحسابات<span className="hidden sm:inline"> والميزانية</span>
             </span>
           </button>
         )}

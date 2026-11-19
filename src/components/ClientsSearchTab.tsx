@@ -405,25 +405,25 @@ export const ClientsSearchTab: React.FC<ClientsSearchTabProps> = ({
   return (
     <div className="space-y-5">
       {/* Top Mode Switcher: Directory Search vs. Methods to Find & Acquire New Clients */}
-      <div className="rounded-2xl bg-white p-3.5 border border-slate-200/90 shadow-xs flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
+      <div className="rounded-2xl bg-white p-3 sm:p-3.5 border border-slate-200/90 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
+        <div className="grid grid-cols-1 sm:flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl w-full sm:w-auto">
           <button
             type="button"
             onClick={() => setSubView('directory')}
-            className={`min-h-[40px] px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2 transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
+            className={`min-h-[40px] px-3 sm:px-4 py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-2 transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
               subView === 'directory'
                 ? 'bg-slate-900 text-white shadow-xs'
                 : 'text-slate-700 hover:text-slate-900'
             }`}
           >
-            <Search className="w-4 h-4 text-[#F97316]" />
+            <Search className="w-4 h-4 text-[#F97316] shrink-0" />
             <span>دليل وبحث العملاء المسجلين ({counts.all})</span>
           </button>
 
           <button
             type="button"
             onClick={() => setSubView('acquisition_methods')}
-            className={`min-h-[40px] px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2 transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
+            className={`min-h-[40px] px-3 sm:px-4 py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-2 transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
               subView === 'acquisition_methods'
                 ? 'bg-[#F97316] text-white shadow-xs'
                 : 'text-slate-700 hover:text-slate-900'
@@ -437,7 +437,7 @@ export const ClientsSearchTab: React.FC<ClientsSearchTabProps> = ({
         <button
           type="button"
           onClick={() => setShowAddModal(true)}
-          className="min-h-[40px] px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shrink-0"
+          className="w-full sm:w-auto min-h-[40px] px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shrink-0"
         >
           <UserPlus className="w-4 h-4 text-[#F97316] shrink-0" />
           <span>+ إضافة عميل جديد للدليل</span>

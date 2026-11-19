@@ -350,12 +350,12 @@ export const InteractiveRouteMap: React.FC<InteractiveRouteMapProps> = ({
           </div>
 
           {/* Captain Location Controls */}
-          <div className="flex flex-wrap items-center gap-2.5">
+          <div className="grid grid-cols-1 sm:flex sm:flex-wrap items-center gap-2 w-full lg:w-auto">
             <button
               type="button"
               onClick={handleLocateCaptainGps}
               disabled={isLocating}
-              className="min-h-[44px] px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shrink-0"
+              className="min-h-[42px] px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shrink-0"
             >
               <LocateFixed className="w-4 h-4 text-[#F97316] shrink-0" />
               <span>
@@ -367,7 +367,7 @@ export const InteractiveRouteMap: React.FC<InteractiveRouteMapProps> = ({
               </span>
             </button>
 
-            <div className="flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-xl min-h-[44px]">
+            <div className="flex items-center justify-between sm:justify-start gap-1.5 bg-slate-100 px-3 py-1.5 rounded-xl min-h-[42px]">
               <span className="text-xs font-semibold text-slate-600 whitespace-nowrap">
                 نقطة تمركز الكابتن:
               </span>
@@ -397,7 +397,7 @@ export const InteractiveRouteMap: React.FC<InteractiveRouteMapProps> = ({
                   `تم تحسين خط السير لـ ${optimizedStops.length} محطة حسب الأقرب لموقعك`
                 );
               }}
-              className="min-h-[44px] px-4 py-2 rounded-xl bg-[#F97316] hover:bg-[#EA580C] text-white text-xs font-bold flex items-center gap-1.5 shadow-xs transition-colors cursor-pointer whitespace-nowrap shrink-0"
+              className="min-h-[42px] px-4 py-2 rounded-xl bg-[#F97316] hover:bg-[#EA580C] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition-colors cursor-pointer whitespace-nowrap shrink-0"
             >
               <RouteIcon className="w-4 h-4 shrink-0" />
               <span>رتّب خط السير حسب الأقرب</span>
